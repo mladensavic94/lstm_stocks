@@ -65,19 +65,19 @@ y_test = np.reshape(y_test, (y_test.shape[0], y_test.shape[1],1))
 seed = 666
 np.random.seed (seed)
 model = Sequential ()
-model.add(LSTM(500 , activation = 'tanh', input_shape=(4,1),return_sequences=True))
-model.add(Dropout(0.3))
-model.add(LSTM(200 , activation = 'tanh', return_sequences=True))
-model.add(Dropout(0.3))
-model.add(LSTM(100 , activation = 'tanh',return_sequences=True))
+model.add(LSTM(1000 , activation = 'tanh', input_shape=(4,1),return_sequences=True))
+model.add(Dropout(0.5))
+model.add(LSTM(500 , activation = 'tanh', return_sequences=True))
+model.add(Dropout(0.5))
+model.add(LSTM(200 , activation = 'tanh',return_sequences=True))
 model.add(Dense (1, activation ='linear'))
 
 
 rmsprop = optimizers.RMSprop(lr=0.0001, rho=0.8, epsilon=1e-08)
-adam = optimizers.Adam(lr=0.0001)
-model.compile (loss ="mean_squared_error" , optimizer = adam)   
-model.fit (X_train, Y_train, batch_size = 8, epochs = 30, shuffle = False)
-model.save("best01.h5")
+adam = optimizers.Adam(lr=0.00005)
+model.compile (loss ="mean_squared_error" , optimizer = rmsprop)   
+model.fit (X_train, Y_train, batch_size = 8, epochs = 15, shuffle = False)
+model.save("model.h5")
 
 print (model.summary())
  

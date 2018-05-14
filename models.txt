@@ -1,0 +1,2 @@
+best so far.h5 | LSTM 1000 Drop 0.2 LSTM 500 Drop 0.2 LSTM 200 | adam 0.0001 | batch 16
+best 02.h5 | LSTM 1000 Drop 0.5 LSTM 500 Drop 0.5 LSTM 200| RMSprop(lr=0.0001, rho=0.8, epsilon=1e-08) | batch 8
