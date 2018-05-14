@@ -12,7 +12,7 @@ def download_stock(stock):
 		stock_df = web.DataReader(stock,'iex', start_time, now_time)
 		stock_df['Name'] = stock
 		output_name = stock + '_data.csv'
-		stock_df.to_csv(output_name)
+		stock_df.to_csv("individual_data\\" + output_name)
 	except:
 		bad_names.append(stock)
 		print('bad: %s' % (stock))
