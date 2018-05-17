@@ -10,7 +10,7 @@ from keras.models import Sequential
 from scipy.ndimage.interpolation import shift
 from sklearn import preprocessing
 
-fname="C:\\Workspaces\\python\\individual_data\\GOOGL_data.csv"
+fname="C:\\Workspaces\\python\\individual_data\\WBA_data.csv"
 data_csv = pd.read_csv(fname)
  
 total_data = len(data_csv)
@@ -66,21 +66,21 @@ seed = 666
 np.random.seed (seed)
 model = Sequential ()
 model.add(LSTM(1000 , activation = 'tanh', input_shape=(4,1),return_sequences=True))
-model.add(Dropout(0.3))
+model.add(Dropout(0.5))
 model.add(LSTM(500 , activation = 'tanh', return_sequences=True))
-model.add(Dropout(0.3))
-model.add(LSTM(200 , activation = 'tanh',return_sequences=True))
-model.add(Dropout(0.3))
-model.add(LSTM(200 , activation = 'tanh',return_sequences=True))
-model.add(Dropout(0.3))
+model.add(Dropout(0.5))
+model.add(LSTM(400 , activation = 'tanh',return_sequences=True))
+model.add(Dropout(0.5))
+model.add(LSTM(400 , activation = 'tanh',return_sequences=True))
+model.add(Dropout(0.5))
 model.add(LSTM(200 , activation = 'tanh',return_sequences=True))
 model.add(Dense (1, activation ='linear'))
 
 
-rmsprop = optimizers.RMSprop(lr=0.00005, rho=0.8, epsilon=1e-08)
+rmsprop = optimizers.RMSprop(lr=0.00003, rho=0.8, epsilon=1e-08)
 adam = optimizers.Adam(lr=0.00005)
 model.compile (loss ="mean_squared_error" , optimizer = rmsprop)   
-model.fit (X_train, Y_train, batch_size = 8, epochs = 25, shuffle = False)
+model.fit (X_train, Y_train, batch_size = 8, epochs = 15, shuffle = False)
 model.save("model.h5")
 
 print (model.summary())
