@@ -11,7 +11,7 @@ from scipy.ndimage.interpolation import shift
 from sklearn import preprocessing
 from keras.models import load_model
 
-fname="C:\\Workspaces\\python\\individual_data\\GOOGL_data.csv"
+fname="C:\\Workspaces\\python\\lstm\\individual_data\\WBA_data.csv"
 data_csv = pd.read_csv(fname)
  
 total_data = len(data_csv)
@@ -34,18 +34,12 @@ x_test = x_test[:-1,:]
 x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1],1))
 y_test = y_test[:-1,:]
 y_test = np.reshape(y_test, (y_test.shape[0], y_test.shape[1],1))
+
 model_path = "model.h5"
-
 model = load_model(model_path)
-x = scaler.transform(np.array([[65.23, 65.83, 65.02, 65.34]]))
-x = x.reshape(1,4,1)
-pred1 = model.predict(x) 
-print(x)
-print(pred1)
-pred1 = scaler.inverse_transform(np.reshape(pred1, (1,4)))
+pred1 = model.predict(x_test) 
 
-print(pred1)
-print(scaler.inverse_transform(np.reshape(x, (1,4))))
+pred1 = scaler.inverse_transform(np.reshape(pred1, (x_test.shape[0],x_test.shape[1])))
 
 plt.subplot(221)
 plt.title("Open")
