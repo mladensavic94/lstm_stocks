@@ -77,7 +77,7 @@ model.add(LSTM(200 , activation = 'tanh',return_sequences=True))
 model.add(Dense (1, activation ='linear'))
 
 
-rmsprop = optimizers.RMSprop(lr=0.00003, rho=0.8, epsilon=1e-08)
+rmsprop = optimizers.RMSprop(lr=0.0001, rho=0.8, epsilon=1e-08)
 adam = optimizers.Adam(lr=0.00005)
 model.compile (loss ="mean_squared_error" , optimizer = rmsprop)   
 model.fit (X_train, Y_train, batch_size = 8, epochs = 15, shuffle = False)
