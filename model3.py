@@ -35,7 +35,7 @@ if __name__ == '__main__':
     common.plotTestAndTrain(train_data, test_data)
     x_train, y_train, x_test, y_test = common.prepareForTraining(train_data, test_data)
     model = getModel()
-    common.train(x_train, y_train, model, 8, 10, "model03.h5")
+    common.train(x_train, y_train, model, 8, 15, "model03.h5")
     common.test(model, x_train, y_train, x_test, y_test)
     common.predict(model,x_test, y_test, scaler)
 

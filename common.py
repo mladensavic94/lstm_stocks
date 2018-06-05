@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
+from keras.models import load_model
 
 def readData():
     tkinter.Tk().withdraw()
@@ -69,8 +70,8 @@ def plotPredictedData(real, predicted):
     plt.title("Close")
     plt.plot(real[:,3], color = 'blue')
     plt.plot(predicted[:,3], color = 'red')
-    plt.legend(["real","predicted"])
-    plt.show(block=False)   
+    plt.legend(["real","predicted"], loc=7)
+    plt.show()   
 
 def prepareForTraining(train, test):
     Y_train = np.roll(train, -1, axis=0)
@@ -102,3 +103,6 @@ def predict(model, test_data, real_data, scaler):
     real_data = scaler.inverse_transform(np.reshape(real_data, (real_data.shape[0],real_data.shape[1])))
     plotPredictedData(real_data, pred)
     plt.show()
+
+def loadModel(path):
+    return load_model(path)
